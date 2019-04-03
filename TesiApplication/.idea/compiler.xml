@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ApiGateway" />
+        <module name="application" />
+        <module name="CartMicroservice" />
+        <module name="Client" />
+        <module name="CustomAuthorizationServer" />
+        <module name="ProductMicroservice" />
+        <module name="project (1) (com.ApiGateway)" />
+        <module name="project (2) (com.cartmicroservice)" />
+        <module name="project (2) (com.client)" />
+        <module name="project (3) (com.client)" />
+        <module name="project (3) (com.springopenid)" />
+        <module name="project (4) (com.productMicroservice)" />
+        <module name="project (4) (com.springopenid)" />
+        <module name="project (5) (com.productMicroservice)" />
+        <module name="project (5) (com.shoppingMicroservice)" />
+        <module name="project (6) (com.shoppingMicroservice)" />
+        <module name="ShoppingMicroservice" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="project" target="1.8" />
+      <module name="WebWar" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

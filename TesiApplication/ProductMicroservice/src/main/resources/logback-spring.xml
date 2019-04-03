@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Specifica la cartella in cui verranno salvati i vari file di log -->
+    <property name="LOGS" value="./productMicroserviceLogs" />
+
+    <!-- Configuro il layout dei messaggi di debug sulla console -->
+    <appender name="Console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!-- Il pattern rappresenta ogni segmento della linea di output su console e
+            posso configurare ogni singolo pezzo -->
+            <Pattern>
+                %green(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+
+    <!-- File su cui vengono salvati i log -->
+    <appender name="RollingFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Nome del file di log generato -->
+        <file>${LOGS}/spring-boot-productMicroservice-logger.log</file>
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+        </encoder>
+
+        <!-- Con questa policy di rollover (sostituzione del file di log) viene chiuso ed archiviato
+             un file quando raggiunge i 10 MB o giornalmente -->
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- I file vengono archiviato nella cartella archived creata nella cartella apigatewayLogs
+            e vengono salvati con nome e data-->
+            <fileNamePattern>${LOGS}/archived/spring-boot-productMicroservice-logger.log-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <!-- Specifica la dimensione massima che deve raggiungere un file di log -->
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Log(registra) tutto del livello INFO -->
+    <root level="info">
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="Console" />
+    </root>
+
+    <!-- Log(registra) "com.shoppingMicroservice.project*" a livello TRACE -->
+    <logger name="com.productmicroservice.project" level="trace" additivity="false">
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="Console" />
+    </logger>
+
+</configuration>

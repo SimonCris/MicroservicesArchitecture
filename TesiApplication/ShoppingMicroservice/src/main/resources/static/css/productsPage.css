@@ -1,0 +1,35 @@
+/* Body */
+body  {
+    background: url("../images/background.jpg") no-repeat fixed;
+}
+
+.productInfo{
+    color: #e4e9f0;
+}
+
+/* hr line */
+hr.style1 {
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+/*Product Container */
+.productContainer {
+    border-radius: 15px 50px;
+    background: #181413;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 7px 7px 2px grey;
+}
+
+.headerName{
+    font-size: 20px;
+}
+
+/* Hover table rows */
+tr:hover td, tr:hover td>strong>p{
+    background-color: white;
+    color: #181413;
+}

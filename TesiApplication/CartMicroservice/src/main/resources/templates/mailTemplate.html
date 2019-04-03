@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid #8c8b8b;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        hr{
+            border-top: 1px solid #8c8b8b;
+            border-bottom: 1px solid #fff;
+        }
+
+        .productInfo{
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<h2>Order Summary</h2>
+<hr>
+<h3 th:text="'Dear, ' + ${userInfo.getUser_name()} + ' ' + ${userInfo.getUser_surname()}">Dear, username</h3>
+<h3>Thank you for placing your order at Shopping Microservice.
+    The following are all the information related to the order you made</h3>
+<hr>
+<h4>Order products</h4>
+
+<div class="table-responsive">
+    <table class="table" style="width: 100%;">
+
+        <thead>
+        <tr>
+            <th class = "headerName">Id</th>
+            <th class = "headerName">Name</th>
+            <th class = "headerName">Brand</th>
+            <th class = "headerName">Price</th>
+            <th class = "headerName">Total</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <th:block th:each="product : ${orderProductsList}">
+            <tr>
+                <td th:text="${product.getIdcart_product()}" class="productInfo">Product Id</td>
+                <td th:text="${product.getCart_product_name()}" class="productInfo">Product Name</td>
+                <td th:text="${product.getCart_product_brand()}" class="productInfo">Product Brand</td>
+                <td th:text="${product.getCart_product_price()}" class="productInfo">Product Price</td>
+                <td></td>
+            </tr>
+        </th:block>
+        <tr style="border-top: 1px solid #8c8b8b;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td th:text="${totalPrice} + ' Euro'" class="productInfo">Total Price</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<br>
+<hr>
+
+ <h4>Shipping Information</h4>
+
+<div class="table-responsive">
+    <table class="table" style="width: 100%;">
+
+        <thead>
+        <tr>
+            <th class = "headerName" style="background-color: #ee191f;">Order Date</th>
+            <th class = "headerName" style="background-color: #ee191f;">Name</th>
+            <th class = "headerName" style="background-color: #ee191f;">Surname</th>
+            <th class = "headerName" style="background-color: #ee191f;">Address</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td class="productInfo" th:text="${orderDate}">Order Date</td>
+                <td class="productInfo" th:text="${userInfo.getUser_name()}">User Name</td>
+                <td class="productInfo" th:text="${userInfo.getUser_surname()}">User Surname</td>
+                <td class="productInfo" th:text="${userInfo.getUser_address() + ' , ' +
+                                                   userInfo.getUser_domicile_city()}">Address</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
